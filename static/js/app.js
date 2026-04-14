@@ -30,14 +30,15 @@ document.getElementById('prediction-form').addEventListener('submit', async (e) 
             body: JSON.stringify(data)
         });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        let result;
+        try {
+            result = await response.json();
+        } catch (e) {
+            throw new Error(`Server returned status ${response.status} unparseable response.`);
         }
 
-        const result = await response.json();
-
-        if (result.error) {
-            alert('Error: ' + result.error);
+        if (!response.ok || result.error) {
+            alert('Error from API: ' + (result?.error || response.statusText));
             resetBtn();
             return;
         }

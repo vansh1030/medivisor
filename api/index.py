@@ -1,6 +1,5 @@
 import os
 import joblib
-import pandas as pd
 from flask import Flask, request, jsonify, render_template
 from supabase import create_client, Client
 
@@ -66,16 +65,17 @@ def predict():
         wheezing = int(data.get('wheezing'))
         sob = int(data.get('shortness_of_breath'))
         
-        # Prepare DataFrame for scikit-learn
-        input_data = pd.DataFrame([{
-            'age': age,
-            'gender': gender,
-            'bmi': bmi,
-            'smoking': smoking,
-            'family_history': family_history,
-            'wheezing': wheezing,
-            'shortness_of_breath': sob
-        }])
+        # Prepare features array (matching the training dataframe column order)
+        # Order: age, gender, bmi, smoking, family_history, wheezing, shortness_of_breath
+        input_data = [[
+            age,
+            gender,
+            bmi,
+            smoking,
+            family_history,
+            wheezing,
+            sob
+        ]]
 
         # Predict
         prediction = model.predict(input_data)[0]
