@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medivisor | AI-Driven Asthma Prediction CDSS</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Tailwind as requested to not be used by default unless specified, using pure CSS for styling -->
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Branding -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <h1>Medivisor</h1>
+            </div>
+            <p class="subtitle">AI Clinical Decision Support System</p>
+            <div class="sidebar-info">
+                <p>Welcome to Medivisor, an AI-powered system designed to predict asthma risk and recommend preliminary clinical steps using Machine Learning.</p>
+                <div class="dpdp-notice">
+                    <strong>Privacy Notice:</strong> We do not store personally identifiable medical data. All inputs remain strictly anonymous.
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Form & Results -->
+        <main class="main-content">
+            <header class="topbar">
+                <h2>Patient Assessment Intake</h2>
+            </header>
+
+            <div class="split-view">
+                <!-- Input Form -->
+                <div class="card form-card">
+                    <form id="prediction-form">
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" name="age" required min="1" max="120" placeholder="e.g. 35">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" name="gender" required>
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                    <option value="2">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="bmi">BMI</label>
+                                <input type="number" id="bmi" name="bmi" required step="0.1" min="10" max="60" placeholder="e.g. 24.5">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="smoking">Smoking History</label>
+                                <select id="smoking" name="smoking" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="family">Family History of Asthma</label>
+                                <select id="family" name="family" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label for="wheezing">Frequent Wheezing</label>
+                                <select id="wheezing" name="wheezing" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group full-width">
+                                <label for="sob">Shortness of Breath</label>
+                                <select id="sob" name="sob" required>
+                                    <option value="" disabled selected>Select option</option>
+                                    <option value="1">Yes</option>
+                                    <option value="0">No</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="submit-btn" class="btn-primary">
+                            <span>Analyze Risk</span>
+                            <div class="loader hidden" id="btn-loader"></div>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Result Card -->
+                <div class="card result-card" id="result-box">
+                    <div class="idle-state" id="idle-state">
+                        <div class="icon-pulse"></div>
+                        <h3>Awaiting Data</h3>
+                        <p>Fill out the assessment form to generate an AI risk prediction.</p>
+                    </div>
+
+                    <div class="active-state hidden" id="active-state">
+                        <h3>Prediction Results</h3>
+                        
+                        <div class="risk-meter">
+                            <span class="risk-label" id="risk-label">Medium Risk</span>
+                            <div class="risk-bar-container">
+                                <div class="risk-bar" id="risk-bar"></div>
+                            </div>
+                        </div>
+
+                        <div class="treatment-box">
+                            <h4>Recommendations</h4>
+                            <p id="treatment-text">Loading...</p>
+                        </div>
+
+                        <div class="disclaimer-box">
+                            <h4>⚠️ Clinical Disclaimer</h4>
+                            <p id="disclaimer-text">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- JS script -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
