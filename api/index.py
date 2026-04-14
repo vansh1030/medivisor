@@ -57,13 +57,13 @@ def predict():
     data = request.json
     try:
         # Extract features
-        age = int(data.get('age'))
-        gender = int(data.get('gender')) # 0: Male, 1: Female, 2: Other
-        bmi = float(data.get('bmi'))
-        smoking = int(data.get('smoking_history'))
-        family_history = int(data.get('family_history'))
-        wheezing = int(data.get('wheezing'))
-        sob = int(data.get('shortness_of_breath'))
+        age = int(data.get('age', 0))
+        gender = int(data.get('gender', 0)) # 0: Male, 1: Female, 2: Other
+        bmi = float(data.get('bmi', 0.0))
+        smoking = int(data.get('smoking', 0))
+        family_history = int(data.get('family', 0))
+        wheezing = int(data.get('wheezing', 0))
+        sob = int(data.get('sob', 0))
         
         # Prepare features array (matching the training dataframe column order)
         # Order: age, gender, bmi, smoking, family_history, wheezing, shortness_of_breath
