@@ -32,7 +32,7 @@ wheezing = np.random.choice([0, 1], num_samples, p=[0.8, 0.2])
 shortness_of_breath = np.random.choice([0, 1], num_samples, p=[0.85, 0.15])
 
 # Construct Target: Risk Level (Low, Medium, High)
-# Based on logical simulated clinical rules
+# Based on optimal count of 'yes' parameters
 risks = []
 for i in range(num_samples):
     w = wheezing[i]
@@ -41,21 +41,19 @@ for i in range(num_samples):
     fh = family_history[i]
     bmi = bmis[i]
     
-    if w == 1 and sob == 1 and (sm == 1 or fh == 1):
+    # Count how many parameters are considered 'Yes' risks
+    yes_count = w + sob + sm + fh
+    
+    # Let's also count High BMI (>30) as a conceptual 'Yes' for respiratory strain
+    if bmi > 30.0:
+        yes_count += 1
+        
+    if yes_count >= 3:
         risks.append("High")
-    elif (w == 1 or sob == 1):
-        if bmi > 25 or sm == 1 or fh == 1:
-            risks.append("High")
-        else:
-            risks.append("Medium")
-    elif fh == 1 and (bmi > 30 or sm == 1):
+    elif yes_count == 2:
         risks.append("Medium")
     else:
-        # Add some slight random noise for realistic ML behavior
-        if np.random.random() > 0.95:
-            risks.append(np.random.choice(["Medium", "High"]))
-        else:
-            risks.append("Low")
+        risks.append("Low")
 
 df = pd.DataFrame({
     'age': ages,
