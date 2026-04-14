@@ -5,135 +5,180 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medivisor | AI-Driven Asthma Prediction CDSS</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/static/css/styles.css">
-    <!-- Tailwind as requested to not be used by default unless specified, using pure CSS for styling -->
 </head>
 <body>
-    <div class="app-container">
-        <!-- Sidebar / Branding -->
-        <aside class="sidebar">
+
+    <!-- Animated Background Shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar fade-down">
+        <div class="nav-container">
             <div class="logo">
                 <div class="logo-icon"></div>
                 <h1>Medivisor</h1>
             </div>
-            <p class="subtitle">AI Clinical Decision Support System</p>
-            <div class="sidebar-info">
-                <p>Welcome to Medivisor, an AI-powered system designed to predict asthma risk and recommend preliminary clinical steps using Machine Learning.</p>
-                <div class="dpdp-notice">
-                    <strong>Privacy Notice:</strong> We do not store personally identifiable medical data. All inputs remain strictly anonymous.
-                </div>
-            </div>
-        </aside>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">How it Works</a></li>
+                <li><a href="#">Clinics</a></li>
+                <li><a href="#" class="btn-nav">Contact Support</a></li>
+            </ul>
+        </div>
+    </nav>
 
-        <!-- Main Form & Results -->
-        <main class="main-content">
-            <header class="topbar">
-                <h2>Patient Assessment Intake</h2>
-            </header>
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        
+        <!-- Hero Intro -->
+        <header class="hero fade-up">
+            <h2>AI Clinical Decision Support System</h2>
+            <p>Welcome to Medivisor, a cutting-edge diagnostic tool designed to predict asthma risk and recommend preliminary clinical steps using advanced Machine Learning algorithms.</p>
+        </header>
 
-            <div class="split-view">
-                <!-- Input Form -->
-                <div class="card form-card">
-                    <form id="prediction-form" action="javascript:void(0);">
-                        <div class="form-grid">
-                            <div class="input-group">
-                                <label for="age">Age</label>
-                                <input type="number" id="age" name="age" required min="1" max="120" placeholder="e.g. 35">
+        <div class="app-container fade-up delay-1">
+            <main class="main-content">
+                <header class="topbar">
+                    <h3>Patient Assessment Intake</h3>
+                    <p class="subtitle">Please fill out the form below carefully.</p>
+                </header>
+
+                <div class="split-view">
+                    <!-- Input Form -->
+                    <div class="card form-card">
+                        <form id="prediction-form" action="javascript:void(0);">
+                            <div class="form-grid">
+                                
+                                <div class="input-wrapper">
+                                    <input type="number" id="age" name="age" required min="1" max="120" placeholder=" ">
+                                    <label for="age">Age</label>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <select id="gender" name="gender" required>
+                                        <option value="" disabled selected>Select Gender</option>
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                        <option value="2">Other</option>
+                                    </select>
+                                    <label class="select-label" for="gender">Gender</label>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <input type="number" id="bmi" name="bmi" required step="0.1" min="10" max="60" placeholder=" ">
+                                    <label for="bmi">BMI</label>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <select id="smoking" name="smoking" required>
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                    <label class="select-label" for="smoking">Smoking History</label>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <select id="family" name="family" required>
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                    <label class="select-label" for="family">Family History</label>
+                                </div>
+
+                                <div class="input-wrapper">
+                                    <select id="wheezing" name="wheezing" required>
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                    <label class="select-label" for="wheezing">Frequent Wheezing</label>
+                                </div>
+
+                                <div class="input-wrapper full-width">
+                                    <select id="sob" name="sob" required>
+                                        <option value="" disabled selected>Select Option</option>
+                                        <option value="1">Yes</option>
+                                        <option value="0">No</option>
+                                    </select>
+                                    <label class="select-label" for="sob">Shortness of Breath</label>
+                                </div>
                             </div>
 
-                            <div class="input-group">
-                                <label for="gender">Gender</label>
-                                <select id="gender" name="gender" required>
-                                    <option value="" disabled selected>Select Gender</option>
-                                    <option value="0">Male</option>
-                                    <option value="1">Female</option>
-                                    <option value="2">Other</option>
-                                </select>
+                            <button type="submit" id="submit-btn" class="btn-primary ripple">
+                                <span>Analyze Risk</span>
+                                <div class="loader hidden" id="btn-loader"></div>
+                            </button>
+                            
+                            <div class="dpdp-notice">
+                                <span class="lock-icon">🔒</span>
+                                <strong>Privacy Notice:</strong> No PII is stored. All inputs remain anonymous.
                             </div>
-
-                            <div class="input-group">
-                                <label for="bmi">BMI</label>
-                                <input type="number" id="bmi" name="bmi" required step="0.1" min="10" max="60" placeholder="e.g. 24.5">
-                            </div>
-
-                            <div class="input-group">
-                                <label for="smoking">Smoking History</label>
-                                <select id="smoking" name="smoking" required>
-                                    <option value="" disabled selected>Select option</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="family">Family History of Asthma</label>
-                                <select id="family" name="family" required>
-                                    <option value="" disabled selected>Select option</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-
-                            <div class="input-group">
-                                <label for="wheezing">Frequent Wheezing</label>
-                                <select id="wheezing" name="wheezing" required>
-                                    <option value="" disabled selected>Select option</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-
-                            <div class="input-group full-width">
-                                <label for="sob">Shortness of Breath</label>
-                                <select id="sob" name="sob" required>
-                                    <option value="" disabled selected>Select option</option>
-                                    <option value="1">Yes</option>
-                                    <option value="0">No</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <button type="submit" id="submit-btn" class="btn-primary">
-                            <span>Analyze Risk</span>
-                            <div class="loader hidden" id="btn-loader"></div>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Result Card -->
-                <div class="card result-card" id="result-box">
-                    <div class="idle-state" id="idle-state">
-                        <div class="icon-pulse"></div>
-                        <h3>Awaiting Data</h3>
-                        <p>Fill out the assessment form to generate an AI risk prediction.</p>
+                        </form>
                     </div>
 
-                    <div class="active-state hidden" id="active-state">
-                        <h3>Prediction Results</h3>
-                        
-                        <div class="risk-meter">
-                            <span class="risk-label" id="risk-label">Medium Risk</span>
-                            <div class="risk-bar-container">
-                                <div class="risk-bar" id="risk-bar"></div>
+                    <!-- Result Card -->
+                    <div class="card result-card" id="result-box">
+                        <div class="idle-state" id="idle-state">
+                            <div class="icon-pulse"></div>
+                            <h4>Awaiting Data</h4>
+                            <p>Complete the assessment on the left to trigger the AI diagnostic model.</p>
+                        </div>
+
+                        <div class="active-state hidden" id="active-state">
+                            <h4>Diagnostic Results</h4>
+                            
+                            <div class="risk-meter">
+                                <span class="risk-label" id="risk-label">Medium Risk</span>
+                                <div class="risk-bar-container">
+                                    <div class="risk-bar" id="risk-bar"></div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="treatment-box">
-                            <h4>Recommendations</h4>
-                            <p id="treatment-text">Loading...</p>
-                        </div>
+                            <div class="treatment-box">
+                                <h5>AI Recommendations</h5>
+                                <p id="treatment-text">Loading...</p>
+                            </div>
 
-                        <div class="disclaimer-box">
-                            <h4>⚠️ Clinical Disclaimer</h4>
-                            <p id="disclaimer-text">Loading...</p>
+                            <div class="disclaimer-box">
+                                <h5>⚠️ Clinical Disclaimer</h5>
+                                <p id="disclaimer-text">Loading...</p>
+                            </div>
+                            
+                            <button id="reset-assessment-btn" class="btn-secondary" onclick="location.reload()">Start New Assessment</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="logo-icon small"></div>
+                    <h2>Medivisor</h2>
+                </div>
+                <p>Enhancing clinical workflows with precision AI.</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Medical Disclaimer</a>
+            </div>
+            <div class="footer-social">
+                <p>&copy; 2026 Medivisor CDSS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- JS script -->
     <script src="/static/js/app.js"></script>
