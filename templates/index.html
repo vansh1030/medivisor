@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <!-- Tailwind as requested to not be used by default unless specified, using pure CSS for styling -->
 </head>
 <body>
@@ -36,7 +36,7 @@
             <div class="split-view">
                 <!-- Input Form -->
                 <div class="card form-card">
-                    <form id="prediction-form">
+                    <form id="prediction-form" action="javascript:void(0);">
                         <div class="form-grid">
                             <div class="input-group">
                                 <label for="age">Age</label>
@@ -136,6 +136,6 @@
     </div>
 
     <!-- JS script -->
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="/static/js/app.js"></script>
 </body>
 </html>
