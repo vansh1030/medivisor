@@ -20,14 +20,14 @@
     <nav class="navbar fade-down">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-icon"></div>
+                <img src="/static/images/logo.png" alt="Medivisor Logo" class="custom-logo">
                 <h1>Medivisor</h1>
             </div>
             <ul class="nav-links">
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">How it Works</a></li>
-                <li><a href="#">Clinics</a></li>
-                <li><a href="#" class="btn-nav">Contact Support</a></li>
+                <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#contact" class="btn-nav">Contact Support</a></li>
             </ul>
         </div>
     </nav>
@@ -157,6 +157,70 @@
                 </div>
             </main>
         </div>
+
+        <!-- How it Works Section -->
+        <section id="how-it-works" class="info-section fade-up delay-1">
+            <div class="section-container">
+                <h3>How the CDSS Works</h3>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <div class="icon">🔍</div>
+                        <h4>1. Analyze Parameters</h4>
+                        <p>Our algorithm takes core physiological inputs like your Age, BMI, and Family History to assess baseline probabilities.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">🤖</div>
+                        <h4>2. AI Processing</h4>
+                        <p>A supervised Machine Learning Decision Tree maps your metrics against synthesized clinical respiratory patterns.</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="icon">📊</div>
+                        <h4>3. Instant Prediction</h4>
+                        <p>Receive an immediate, categorized Asthma Risk profile (Low, Medium, or High) along with actionable guidelines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Section -->
+        <section id="security" class="info-section alt-bg fade-up delay-1">
+            <div class="section-container">
+                <h3>Data Security & DPDP Compliance</h3>
+                <div class="security-content">
+                    <p>Medivisor is built strictly with basic Data Privacy Concepts (DPDP) in mind. Your trust is our priority:</p>
+                    <ul class="security-list">
+                        <li><strong>Anonymization:</strong> We permanently decouple all diagnostic logs from Personally Identifiable Information (PII). No names or identifiable IP addresses are kept on file.</li>
+                        <li><strong>Minimalism:</strong> We intentionally process only the exact 7 minimal clinical data boundaries needed for the medical prediction, ignoring extraneous invasive health checkpoints.</li>
+                        <li><strong>Database Standards:</strong> Logs undergo stringent access control through Row Level Security (RLS) on our backend isolated clusters.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="info-section fade-up delay-1">
+            <div class="section-container">
+                <h3>Contact Support</h3>
+                <p>If you encounter technical issues with our algorithms or need enterprise data-processing clearance, please reach out to our administration securely.</p>
+                
+                <div class="contact-box">
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div class="contact-text">
+                            <strong>Email Address</strong><br>
+                            <a href="mailto:vansh.shah@somaiya.edu">vansh.shah@somaiya.edu</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <div class="contact-text">
+                            <strong>Phone Number</strong><br>
+                            <a href="tel:1234512345">12345 12345</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 
     <!-- Footer -->
@@ -164,7 +228,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="logo">
-                    <div class="logo-icon small"></div>
+                    <img src="/static/images/logo.png" alt="Medivisor Logo" class="custom-logo small">
                     <h2>Medivisor</h2>
                 </div>
                 <p>Enhancing clinical workflows with precision AI.</p>
